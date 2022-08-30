@@ -12,13 +12,13 @@ function reset() {
 
 // AC button event
 
-ac_btn = document.querySelector('.AC');
+let ac_btn = document.querySelector('.AC');
 ac_btn.addEventListener('click',() => {
     reset();
 })
 
 // Make result zero
-zerofy_btn = document.querySelector('.zerofy');
+let zerofy_btn = document.querySelector('.zerofy');
 zerofy_btn.addEventListener('click',() => {
     result_string.textContent = '0';
 });
@@ -72,6 +72,16 @@ let dict_arithmetic = {
 
 let ops = ['/','*','+','-','%'];
 
+// evals a number, rounds down floats to 2 decimal numbers
+
+function round2(n) {
+    if (n.toString().split('.').length > 1) {
+        return parseFloat(eval(n)).toFixed(2).toString();
+    } else {
+        return eval(n).toString()
+    }
+}
+
 function applyArithmetic(operator) {
     if (info_string.textContent == '') {
         info_string.textContent = result_string.textContent + ' ' + operator;
@@ -81,12 +91,12 @@ function applyArithmetic(operator) {
 
     } else if (info_string.textContent.split(' ').length == 2) {
         let finalres = info_string.textContent + ' ' + result_string.textContent;
-        let eval_num = eval(finalres).toString();
-        // console.log(eval_num)
-        if (eval_num.split('.').length == 2) {
-            eval_num = parseFloat(eval_num).toFixed(2).toString();
-        }
-        info_string.textContent = eval_num.toString() + ' ' + operator;
+        // let eval_num = eval(finalres).toString();
+        // // console.log(eval_num)
+        // if (eval_num.split('.').length == 2) {
+        //     eval_num = parseFloat(eval_num).toFixed(2).toString();
+        // }
+        info_string.textContent = round2(finalres) + ' ' + operator;
         result_string.textContent = '0';
 
     } else if (info_string.textContent.split(' ').length == 3) {
@@ -114,16 +124,42 @@ function equalEval() {
         info_string.textContent = result_string.textContent;
         result_string.textContent = '0';
     } else if (info_string.textContent.split(' ').length == 2) {
-        info_string.textContent = eval(info_string.textContent + ' ' + result_string.textContent);
-        result_string.textContent = '0';
+        result_string.textContent = round2(info_string.textContent + ' ' + result_string.textContent);
+        info_string.textContent = '';
     }
 }
 
-equals_btn = document.querySelector('.equals');
-console.log(equals_btn);
+let equals_btn = document.querySelector('.equals');
+// console.log(equals_btn);
 equals_btn.addEventListener('click',(e) => {
     equalEval();
 });
 
 // adds functionality to the decimal button
 
+function addDecimal() {
+    if(result_string.textContent.split('.').length === 1) {
+        result_string.textContent += '.';
+    } 
+}
+
+let decimal_btn = document.querySelector('.decimal');
+// console.log(decimal_btn);
+decimal_btn.addEventListener('click',() => {
+    addDecimal()
+});
+
+// Add functionality to the backspace button
+
+function removeNum() {
+    if (result_string.textContent.length === 1 && result_string.textContent !== '0') {
+        result_string.textContent = '0';
+    } else if (result_string.textContent !== '0') {
+        result_string.textContent = result_string.textContent.slice(0,result_string.textContent.length -1)
+    } 
+}
+
+let backspace_btn = document.querySelector('.bkspace');
+backspace_btn.addEventListener('click',() => {
+    removeNum();
+})
