@@ -1,0 +1,85 @@
+body {
+    display: flex;
+    background-color: burlywood;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* The calculator container itself  */
+
+
+.calculator_container {
+    height: 650px;
+    width: 400px;
+    background-color: rgb(17, 158, 151);
+    border: solid 5px black;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+}
+
+/* The div that displays the input and output  */
+
+.calc_display {
+    height: 100px;
+    background-color: rgb(197, 193, 193);
+    border: solid 2px black;
+    box-sizing: border-box;
+    margin: 6px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.info_display {
+    height: 40px;
+    text-align: right;
+    justify-content: right;
+    align-items: center;
+    font-size: 15px;
+    /* align-self: center;
+    justify-items: center; */
+    display: flex;
+    padding-right: 5px;
+
+    
+}
+
+.result_display {
+    padding-right: 5px;
+    height: 50px;   
+    text-align: right;
+    justify-content: right;
+    align-items: center;
+    font-size: 45px;
+    display: flex;
+}
+
+
+/* The calc buttons and its container  */
+
+.calc_buttons_container {
+    display: grid;
+    flex:1;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.calc_button {
+    /* height: 40px; */
+    /* width: 40px; */
+    justify-self: stretch;
+    align-self:stretch;
+    /* padding: 6px; */
+    margin: 6px;
+    box-sizing: border-box;
+    background-color: gainsboro;
+    border: solid 3px black;
+    transition: 100ms;
+}
+
+.calc_button:hover {
+    border: solid 3px yellow;
+
+}
