@@ -31,6 +31,13 @@ body {
     box-sizing: border-box;
     margin: 6px;
     font-family: 'Courier New', Courier, monospace;
+    transition: 100ms;
+
+}
+
+.calc_display.red_border {
+    border: solid 2px red;
+    /* box-shadow: 5px; */
 }
 
 .info_display {
