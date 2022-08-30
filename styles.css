@@ -19,6 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 6px;
+    border-radius: 10px;
 }
 
 /* The div that displays the input and output  */
@@ -77,9 +78,31 @@ body {
     background-color: gainsboro;
     border: solid 3px black;
     transition: 100ms;
+    font-size: 32px;
+    font-weight: 500;
+
 }
 
 .calc_button:hover {
     border: solid 3px yellow;
+
+}
+
+.calc_button:active {
+    margin: 4px;    
+    background-color: rgb(170, 170, 170);
+
+}
+
+
+
+.op {
+    background-color: rgb(197, 3, 3);
+    color: white;
+
+}
+
+.op:active {
+    background-color: rgb(158, 5, 5);
 
 }
