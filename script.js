@@ -37,6 +37,9 @@ function addNumber(n) {
     }
 }
 
+
+// Add functionality to the number buttons in the calc
+
 let dict_num = {
     0: "zero",
     1: 'one',
@@ -56,3 +59,71 @@ for (let i = 0; i<10; i++) {
         addNumber(i);
     })
 }
+
+// Add functionality to the arithmetic buttons
+
+let dict_arithmetic = {
+    '/':'div',
+    '*':'mul',
+    '+':'add',
+    '-':'minus',
+    '%':'mod',
+};
+
+let ops = ['/','*','+','-','%'];
+
+function applyArithmetic(operator) {
+    if (info_string.textContent == '') {
+        info_string.textContent = result_string.textContent + ' ' + operator;
+        result_string.textContent = '0';
+    } else if (info_string.textContent.split(' ').length == 2 && result_string.textContent == '0') {
+        info_string.textContent = info_string.textContent.split(' ')[0] + ' ' + operator;
+
+    } else if (info_string.textContent.split(' ').length == 2) {
+        let finalres = info_string.textContent + ' ' + result_string.textContent;
+        let eval_num = eval(finalres).toString();
+        // console.log(eval_num)
+        if (eval_num.split('.').length == 2) {
+            eval_num = parseFloat(eval_num).toFixed(2).toString();
+        }
+        info_string.textContent = eval_num.toString() + ' ' + operator;
+        result_string.textContent = '0';
+
+    } else if (info_string.textContent.split(' ').length == 3) {
+        info_string.textContent = result_string.textContent + ' ' + operator;
+        result_string.textContent = '0';
+    } else if (info_string.textContent.split(' ').length == 1) {
+        info_string.textContent = info_string.textContent + ' ' + operator;
+        result_string.textContent = '0';
+    }
+}
+
+for (let op of ops) {
+    arith_btn = document.querySelector('.' + dict_arithmetic[op]);
+    // console.log(op, dict_arithmetic[op], arith_btn)
+
+    arith_btn.addEventListener('click',(e) => {
+        applyArithmetic(op);
+    }); 
+}
+
+// the equals button
+
+function equalEval() {
+    if (info_string.textContent == '') {
+        info_string.textContent = result_string.textContent;
+        result_string.textContent = '0';
+    } else if (info_string.textContent.split(' ').length == 2) {
+        info_string.textContent = eval(info_string.textContent + ' ' + result_string.textContent);
+        result_string.textContent = '0';
+    }
+}
+
+equals_btn = document.querySelector('.equals');
+console.log(equals_btn);
+equals_btn.addEventListener('click',(e) => {
+    equalEval();
+});
+
+// adds functionality to the decimal button
+
